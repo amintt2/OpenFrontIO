@@ -296,21 +296,22 @@ export class LangSelector extends LitElement {
           });
 
     return html`
-      <div class="container__row">
-        <button
-          id="lang-selector"
-          @click=${this.openModal}
-          class="text-center appearance-none w-full bg-blue-100 dark:bg-gray-700 hover:bg-blue-200 dark:hover:bg-gray-600 text-blue-900 dark:text-gray-100 p-3 sm:p-4 lg:p-5 font-medium text-sm sm:text-base lg:text-lg rounded-md border-none cursor-pointer transition-colors duration-300 flex items-center gap-2 justify-center"
+      <button
+        id="lang-selector"
+        @click=${this.openModal}
+        class="tactical-lang-selector"
+        title="Change Language"
+      >
+        <img
+          id="lang-flag"
+          class="tactical-lang-flag"
+          src="/flags/${currentLang.svg}.svg"
+          alt="${currentLang.native}"
+        />
+        <span class="tactical-lang-code"
+          >${currentLang.code.toUpperCase()}</span
         >
-          <img
-            id="lang-flag"
-            class="w-6 h-4"
-            src="/flags/${currentLang.svg}.svg"
-            alt="flag"
-          />
-          <span id="lang-name">${currentLang.native} (${currentLang.en})</span>
-        </button>
-      </div>
+      </button>
 
       <language-modal
         .visible=${this.showModal}

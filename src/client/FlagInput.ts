@@ -73,17 +73,10 @@ export class FlagInput extends LitElement {
       <div class="flex relative">
         <button
           id="flag-input_"
-          class="border rounded-lg flex cursor-pointer border-black/30
-          dark:border-gray-300/60 bg-white/70 dark:bg-[rgba(55,65,81,0.7)]
-          "
+          class="tactical-flag-button"
           title=${translateText("flag_input.button_title")}
         >
-          <span
-            id="flag-preview"
-            style="display:inline-block;
-            vertical-align:middle; background:#333; border-radius:6px;
-            overflow:hidden;"
-          ></span>
+          <span id="flag-preview" class="tactical-flag-preview"></span>
         </button>
       </div>
     `;

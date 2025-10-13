@@ -2,25 +2,146 @@
   --theme: "light";
   --breakPoint-tablet: 800px;
   --breakPoint-Desktop: 1024px;
-  --blur-md: 4px;
-  --boxBackgroundColor: #111827cc;
-  --fontColor: #202020;
-  --fontColorLight: #fff;
-  --primaryColor: #2563eb;
-  --primaryColorHover: #1d4ed8;
-  --primaryColorDisabled: linear-gradient(
-    to right,
-    rgb(74, 74, 74),
-    rgb(61, 61, 61)
-  );
-  --secondaryColor: #dbeafe;
-  --secondaryColorHover: #bfdbfe;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  --primaryColorDark: #3b82f6;
-  --primaryColorHoverDark: #2563eb;
-  --primaryColorDisabledDark: #4b5563;
-  --secondaryColorDark: #374151;
-  --secondaryColorHoverDark: #4b5563;
-  --fontColorDark: #f3f4f6;
+  /* Military/Tactical Strategy Design System */
+
+  /* Military Color Palette */
+  --tactical-black: #0a0e14;
+  --tactical-dark: #151a23;
+  --tactical-grey-900: #1a1f2e;
+  --tactical-grey-800: #252b3b;
+  --tactical-grey-700: #2f3647;
+  --tactical-grey-600: #3d4556;
+  --tactical-grey-500: #4a5568;
+  --tactical-grey-400: #6b7280;
+  --tactical-grey-300: #9ca3af;
+  --tactical-grey-200: #d1d5db;
+  --tactical-grey-100: #e5e7eb;
+
+  /* Military Green Accents */
+  --military-green-dark: #1a3a1a;
+  --military-green: #2d5a2d;
+  --military-green-light: #3d7a3d;
+  --military-green-accent: #4a9d4a;
+  --military-green-bright: #5cb85c;
+
+  /* Tactical Olive */
+  --olive-dark: #3d4a2c;
+  --olive: #4d5a3c;
+  --olive-light: #6b7c54;
+  --olive-accent: #8a9b6c;
+
+  /* Alert Colors - Military Style */
+  --alert-red: #c53030;
+  --alert-red-glow: rgba(197, 48, 48, 0.3);
+  --alert-amber: #d97706;
+  --alert-amber-glow: rgba(217, 119, 6, 0.3);
+  --alert-green: #2d5a2d;
+  --alert-green-glow: rgba(45, 90, 45, 0.3);
+
+  /* Sharp Edges - No rounded corners for serious look */
+  --radius-none: 0;
+  --radius-sharp: 2px;
+  --radius-tactical: 3px;
+
+  /* Shadows - Hard, defined shadows */
+  --shadow-tactical-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  --shadow-tactical-md: 0 2px 6px 0 rgba(0, 0, 0, 0.6);
+  --shadow-tactical-lg: 0 4px 12px 0 rgba(0, 0, 0, 0.7);
+  --shadow-tactical-xl: 0 8px 24px 0 rgba(0, 0, 0, 0.8);
+  --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  --shadow-border-top: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  --shadow-border-bottom: inset 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+
+  /* Tactical Glow Effects */
+  --glow-green: 0 0 12px var(--alert-green-glow);
+  --glow-red: 0 0 12px var(--alert-red-glow);
+  --glow-amber: 0 0 12px var(--alert-amber-glow);
+
+  /* Borders - Sharp and defined */
+  --border-tactical: 1px solid var(--tactical-grey-600);
+  --border-tactical-light: 1px solid var(--tactical-grey-500);
+  --border-tactical-accent: 1px solid var(--military-green);
+  --border-tactical-active: 2px solid var(--military-green-accent);
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.5rem;
+  --spacing-2xl: 2rem;
+
+  /* Typography - Military style */
+  --font-tactical:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", monospace;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+
+  /* Light Mode Colors (Tactical Theme) */
+  --boxBackgroundColor: var(--tactical-grey-800);
+  --boxBackgroundColorHover: var(--tactical-grey-700);
+  --fontColor: var(--tactical-grey-100);
+  --fontColorLight: #ffffff;
+  --fontColorMuted: var(--tactical-grey-400);
+
+  /* Primary Colors - Military Green */
+  --primaryColor: var(--military-green);
+  --primaryColorHover: var(--military-green-light);
+  --primaryColorActive: var(--military-green-accent);
+  --primaryColorDisabled: var(--tactical-grey-600);
+
+  /* Secondary Colors - Tactical Grey */
+  --secondaryColor: var(--tactical-grey-700);
+  --secondaryColorHover: var(--tactical-grey-600);
+  --secondaryColorActive: var(--tactical-grey-500);
+
+  /* Accent Colors */
+  --accentColor: var(--military-green-accent);
+  --accentColorHover: var(--military-green-bright);
+  --successColor: var(--alert-green);
+  --warningColor: var(--alert-amber);
+  --errorColor: var(--alert-red);
+  --infoColor: var(--olive-accent);
+
+  /* Transitions - Snappy and responsive */
+  --transition-instant: all 0.1s ease-out;
+  --transition-fast: all 0.15s ease-out;
+  --transition: all 0.2s ease-out;
+  --transition-slow: all 0.3s ease-out;
+
+  /* Dark Mode Colors (Even darker tactical) */
+  --boxBackgroundColorDark: var(--tactical-black);
+  --boxBackgroundColorHoverDark: var(--tactical-dark);
+  --primaryColorDark: var(--military-green-light);
+  --primaryColorHoverDark: var(--military-green-accent);
+  --primaryColorDisabledDark: var(--tactical-grey-700);
+  --secondaryColorDark: var(--tactical-grey-900);
+  --secondaryColorHoverDark: var(--tactical-grey-800);
+  --fontColorDark: var(--tactical-grey-100);
+  --fontColorMutedDark: var(--tactical-grey-500);
+
+  /* Panel Backgrounds */
+  --panel-bg: linear-gradient(
+    180deg,
+    var(--tactical-grey-800) 0%,
+    var(--tactical-grey-900) 100%
+  );
+  --panel-bg-hover: linear-gradient(
+    180deg,
+    var(--tactical-grey-700) 0%,
+    var(--tactical-grey-800) 100%
+  );
+  --panel-border: var(--border-tactical);
+
+  /* HUD Elements */
+  --hud-bg: rgba(10, 14, 20, 0.95);
+  --hud-border: var(--tactical-grey-600);
+  --hud-text: var(--tactical-grey-200);
+  --hud-accent: var(--military-green-accent);
 }

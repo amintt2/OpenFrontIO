@@ -1,44 +1,119 @@
+/* Military/Tactical Button Styles */
 .c-button {
+  position: relative;
   background: var(--primaryColor);
-  color: #fff;
+  color: var(--fontColorLight);
   cursor: pointer;
   outline: none;
   display: inline-block;
-  font-size: 16px;
-  border: 1px solid transparent;
+  font-size: 0.813rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  border: var(--border-tactical-accent);
   text-align: center;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
-  transition: var(--transition);
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius-sharp);
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-tactical-md), var(--shadow-border-top);
+  overflow: hidden;
 
   @media (min-width: 1024px) {
-    font-size: 18px;
+    font-size: 0.875rem;
+    padding: 0.75rem 2rem;
   }
 }
 
+/* Tactical scan line effect */
+.c-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transition: left 0.5s ease-out;
+  pointer-events: none;
+}
+
+.c-button:hover::before {
+  left: 100%;
+}
+
 .c-button:hover,
-.c-button:active,
 .c-button:focus {
   background: var(--primaryColorHover);
-  transition: var(--transition);
+  border-color: var(--military-green-bright);
+  box-shadow:
+    var(--shadow-tactical-lg), var(--glow-green), var(--shadow-border-top);
+  transform: translateY(-1px);
+  transition: var(--transition-fast);
+}
+
+.c-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  background: var(--primaryColorActive);
 }
 
 .c-button:disabled {
   background: var(--primaryColorDisabled);
-  opacity: 0.7;
+  border-color: var(--tactical-grey-600);
+  opacity: 0.5;
   cursor: not-allowed;
-  transition: var(--transition);
+  transform: none;
+  box-shadow: var(--shadow-tactical-sm);
+  transition: var(--transition-fast);
 }
 
+.c-button:disabled:hover {
+  transform: none;
+  box-shadow: var(--shadow-tactical-sm);
+}
+
+.c-button:disabled::before {
+  display: none;
+}
+
+/* Secondary Button - Tactical Grey */
 .c-button--secondary {
   background: var(--secondaryColor);
+  border: var(--border-tactical);
   color: var(--fontColor);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-border-top);
 }
 
 .c-button--secondary:hover,
-.c-button--secondary:active,
 .c-button--secondary:focus {
   background: var(--secondaryColorHover);
+  border-color: var(--tactical-grey-400);
+  box-shadow: var(--shadow-tactical-md), var(--shadow-border-top);
+}
+
+.c-button--secondary:active {
+  background: var(--secondaryColorActive);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+}
+
+/* Danger Button - Alert Red */
+.c-button--danger {
+  background: var(--alert-red);
+  border: 1px solid #dc2626;
+  color: var(--fontColorLight);
+}
+
+.c-button--danger:hover,
+.c-button--danger:focus {
+  background: #b91c1c;
+  border-color: #ef4444;
+  box-shadow:
+    var(--shadow-tactical-lg), var(--glow-red), var(--shadow-border-top);
 }
 
 .c-button--block {
@@ -54,31 +129,4 @@
     width: auto;
     margin: 0 auto;
   }
-}
-
-.dark .c-button {
-  background: var(--primaryColorDark);
-  color: var(--fontColorLight);
-}
-
-.dark .c-button:hover,
-.dark .c-button:active,
-.dark .c-button:focus {
-  background: var(--primaryColorHoverDark);
-}
-
-.dark .c-button:disabled {
-  background: var(--primaryColorDisabledDark);
-  opacity: 0.7;
-}
-
-.dark .c-button--secondary {
-  background: var(--secondaryColorDark);
-  color: var(--fontColorDark);
-}
-
-.dark .c-button--secondary:hover,
-.dark .c-button--secondary:active,
-.dark .c-button--secondary:focus {
-  background: var(--secondaryColorHoverDark);
 }

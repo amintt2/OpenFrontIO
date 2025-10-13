@@ -48,26 +48,336 @@
 .start-game-button {
   width: 100%;
   max-width: 300px;
-  padding: 15px 20px;
-  font-size: 16px;
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s;
+  background: var(--primaryColor);
+  color: var(--fontColorLight);
+  border: var(--border-tactical-accent);
+  border-radius: var(--radius-sharp);
+  transition: var(--transition-fast);
   display: inline-block;
   margin: 0 0 20px 0;
+  box-shadow: var(--shadow-tactical-md), var(--shadow-border-top);
+  position: relative;
+  overflow: hidden;
+}
+
+.start-game-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transition: left 0.5s ease-out;
+  pointer-events: none;
 }
 
 .start-game-button:not(:disabled):hover {
-  background-color: #0056b3;
+  background: var(--primaryColorHover);
+  transform: translateY(-1px);
+  box-shadow:
+    var(--shadow-tactical-lg), var(--glow-green), var(--shadow-border-top);
+  border-color: var(--military-green-bright);
+}
+
+.start-game-button:not(:disabled):hover::before {
+  left: 100%;
+}
+
+.start-game-button:not(:disabled):active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  background: var(--primaryColorActive);
 }
 
 .start-game-button:disabled {
-  background: linear-gradient(to right, #4a4a4a, #3d3d3d);
-  opacity: 0.7;
+  background: var(--primaryColorDisabled);
+  border-color: var(--tactical-grey-600);
+  opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-tactical-sm);
+}
+
+/* Tactical Settings Button */
+.tactical-settings-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-tactical-md), var(--shadow-border-top);
+  color: var(--tactical-grey-300);
+}
+
+.tactical-settings-button:hover {
+  background: var(--tactical-grey-700);
+  border-color: var(--military-green);
+  box-shadow:
+    var(--shadow-tactical-lg), var(--glow-green), var(--shadow-border-top);
+  transform: translateY(-2px);
+  color: var(--military-green-accent);
+}
+
+.tactical-settings-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+}
+
+.tactical-settings-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Tactical Input Fields */
+.tactical-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+  text-align: center;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  color: var(--fontColor);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  transition: var(--transition-fast);
+  outline: none;
+}
+
+.tactical-input::placeholder {
+  color: var(--tactical-grey-500);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.tactical-input:focus {
+  border-color: var(--military-green);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+  background: var(--tactical-grey-700);
+}
+
+.tactical-input:hover {
+  border-color: var(--tactical-grey-500);
+  background: var(--tactical-grey-700);
+}
+
+/* Tactical Error Message */
+.tactical-error-message {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.813rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  border: 2px solid var(--alert-red);
+  border-radius: var(--radius-sharp);
+  background: var(--tactical-grey-900);
+  color: #fca5a5;
+  box-shadow: var(--shadow-tactical-md), var(--glow-red);
+}
+
+/* Tactical Flag Button */
+.tactical-flag-button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-tactical-sm);
+}
+
+.tactical-flag-button:hover {
+  background: var(--tactical-grey-700);
+  border-color: var(--military-green);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+  transform: translateY(-1px);
+}
+
+.tactical-flag-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+}
+
+.tactical-flag-preview {
+  display: inline-block;
+  vertical-align: middle;
+  background: var(--tactical-grey-900);
+  border-radius: var(--radius-sharp);
+  overflow: hidden;
+  border: 1px solid var(--tactical-grey-700);
+}
+
+/* Tactical Lobby Styles */
+.lobby-id-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.lobby-id-box input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: center;
+  text-transform: uppercase;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  color: var(--fontColor);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  transition: var(--transition-fast);
+  outline: none;
+}
+
+.lobby-id-box input::placeholder {
+  color: var(--tactical-grey-500);
+  font-size: 0.875rem;
+}
+
+.lobby-id-box input:focus {
+  border-color: var(--military-green);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+  background: var(--tactical-grey-700);
+}
+
+.lobby-id-button,
+.lobby-id-paste-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.75rem 1rem;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-tactical-sm);
+  color: var(--fontColor);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.lobby-id-button:hover,
+.lobby-id-paste-button:hover {
+  background: var(--tactical-grey-700);
+  border-color: var(--military-green);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+  transform: translateY(-1px);
+}
+
+.lobby-id-button:active,
+.lobby-id-paste-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+}
+
+.lobby-id-paste-button {
+  padding: 0.75rem;
+  min-width: 48px;
+}
+
+.lobby-id-paste-button-icon,
+.visibility-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--tactical-grey-300);
+}
+
+.message-area {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background: var(--tactical-grey-900);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  color: var(--military-green-accent);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.message-area.show {
+  opacity: 1;
+  max-height: 100px;
+}
+
+.players-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0.5rem;
+}
+
+.player-tag {
+  padding: 0.375rem 0.75rem;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  color: var(--military-green-accent);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  box-shadow: var(--shadow-tactical-sm);
+}
+
+.options-section {
+  margin-bottom: 1.5rem;
+}
+
+.option-title {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--military-green-accent);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: var(--border-tactical-accent);
 }
 
 .options-layout {
@@ -89,27 +399,66 @@
   width: 100%;
   min-width: 100px;
   max-width: 120px;
-  padding: 4px 4px 0 4px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: rgba(30, 30, 30, 0.95);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-border-top);
+  position: relative;
+  overflow: hidden;
+}
+
+.option-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  transition: left 0.5s ease-out;
+  pointer-events: none;
 }
 
 .option-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(40, 40, 40, 0.95);
+  border-color: var(--military-green);
+  background: var(--tactical-grey-700);
+  box-shadow:
+    var(--shadow-tactical-md), var(--glow-green), var(--shadow-border-top);
+}
+
+.option-card:hover::before {
+  left: 100%;
 }
 
 .option-card.selected {
-  border-color: #4a9eff;
-  background: rgba(74, 158, 255, 0.1);
+  border: var(--border-tactical-active);
+  background: var(--tactical-grey-700);
+  box-shadow:
+    var(--shadow-tactical-md), var(--glow-green), var(--shadow-border-top);
+}
+
+.option-card.selected::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--military-green-accent);
+  box-shadow: var(--glow-green);
 }
 
 .option-card-title {
