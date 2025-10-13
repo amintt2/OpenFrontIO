@@ -41,7 +41,7 @@ export class OModal extends LitElement {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border-radius: 24px;
+      border-radius: 0;
       min-width: 340px;
       max-width: 860px;
       border: 1px solid rgba(255, 255, 255, 0.3);
@@ -99,7 +99,7 @@ export class OModal extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
+      border-radius: 0;
       background: rgba(0, 0, 0, 0.05);
       color: #1f2937;
       font-size: 20px;
@@ -134,12 +134,12 @@ export class OModal extends LitElement {
 
     .c-modal__content::-webkit-scrollbar-track {
       background: rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
+      border-radius: 0;
     }
 
     .c-modal__content::-webkit-scrollbar-thumb {
       background: rgba(102, 126, 234, 0.3);
-      border-radius: 8px;
+      border-radius: 0;
     }
 
     .c-modal__content::-webkit-scrollbar-thumb:hover {
