@@ -52,47 +52,144 @@ export class MapDisplay extends LitElement {
       width: 100%;
       min-width: 100px;
       max-width: 120px;
-      padding: 4px 4px 0 4px;
+      padding: 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      background: rgba(30, 30, 30, 0.95);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      background: linear-gradient(180deg, #1a1f2e 0%, #0a0e14 100%);
+      border: 2px solid #3d4556;
+      border-radius: 0;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+      position: relative;
+      overflow: visible;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    /* 90-degree corner accents */
+    .option-card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 14px;
+      height: 14px;
+      border-style: solid;
+      border-color: #3d4556;
+      border-width: 2px 0 0 2px;
+      transition: all 0.2s ease-in-out;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .option-card::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 14px;
+      height: 14px;
+      border-style: solid;
+      border-color: #3d4556;
+      border-width: 0 2px 2px 0;
+      transition: all 0.2s ease-in-out;
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     .option-card:hover {
       transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(40, 40, 40, 0.95);
+      border-color: #4a9d4a;
+      background: linear-gradient(180deg, #252b3b 0%, #1a1f2e 100%);
+      box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.6),
+        0 0 12px rgba(74, 157, 74, 0.3);
+    }
+
+    .option-card:hover::before,
+    .option-card:hover::after {
+      border-color: #4a9d4a;
+      opacity: 1;
     }
 
     .option-card.selected {
-      border-color: #4a9eff;
-      background: rgba(74, 158, 255, 0.1);
+      border-color: #5cb85c;
+      background: linear-gradient(180deg, #252b3b 0%, #1a1f2e 100%);
+      box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.7),
+        0 0 16px rgba(74, 157, 74, 0.5);
+    }
+
+    .option-card.selected::before,
+    .option-card.selected::after {
+      border-color: #5cb85c;
+      opacity: 1;
+      width: 18px;
+      height: 18px;
     }
 
     .option-card-title {
-      font-size: 14px;
-      color: #aaa;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #9ca3af;
       text-align: center;
-      margin: 0 0 4px 0;
+      margin: 6px 0 0 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .option-card.selected .option-card-title {
+      color: #5cb85c;
     }
 
     .option-image {
       width: 100%;
       aspect-ratio: 4/2;
-      color: #aaa;
-      transition: transform 0.2s ease-in-out;
-      border-radius: 8px;
-      background-color: rgba(255, 255, 255, 0.1);
-      font-size: 14px;
+      color: #9ca3af;
+      transition: all 0.2s ease-in-out;
+      border-radius: 0;
+      background-color: #0a0e14;
+      border: 1px solid #252b3b;
+      font-size: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .option-card:hover .option-image {
+      border-color: #4a9d4a;
+      box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 8px rgba(74, 157, 74, 0.2);
+    }
+
+    .option-card.selected .option-image {
+      border-color: #5cb85c;
+      box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 12px rgba(74, 157, 74, 0.4);
+    }
+
+    .option-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8) contrast(1.1);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .option-card:hover .option-image img {
+      filter: brightness(1) contrast(1.2);
+      transform: scale(1.05);
+    }
+
+    .option-card.selected .option-image img {
+      filter: brightness(1.1) contrast(1.2);
     }
   `;
 

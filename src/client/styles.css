@@ -239,16 +239,23 @@
   border: 1px solid var(--tactical-grey-700);
 }
 
-/* Tactical Lobby Styles - Integrated with 90-degree borders */
+/* Tactical Lobby Styles - Single Unified Box */
 .lobby-id-box {
   display: flex;
   gap: 0;
   margin-bottom: 1.5rem;
   align-items: stretch;
   position: relative;
-  background: var(--tactical-black);
+  background: var(--tactical-grey-900);
   border: 2px solid var(--tactical-grey-700);
-  padding: 2px;
+  padding: 0;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.lobby-id-box:hover {
+  border-color: var(--military-green);
+  box-shadow: 0 0 12px rgba(74, 157, 74, 0.3);
 }
 
 /* 90-degree corners for lobby ID box */
@@ -256,12 +263,13 @@
 .lobby-id-box::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-style: solid;
   border-color: var(--military-green-accent);
   pointer-events: none;
   z-index: 1;
+  transition: var(--transition-fast);
 }
 
 .lobby-id-box::before {
@@ -276,6 +284,68 @@
   border-width: 0 2px 2px 0;
 }
 
+.lobby-id-box:hover::before,
+.lobby-id-box:hover::after {
+  border-color: var(--military-green-bright);
+  width: 28px;
+  height: 28px;
+}
+
+/* Lobby ID display */
+.lobby-id {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  font-family: monospace;
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--military-green-accent);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: all;
+  transition: var(--transition-fast);
+}
+
+.lobby-id-box:hover .lobby-id {
+  color: var(--military-green-bright);
+}
+
+/* Copied indicator */
+.copy-success-icon {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+  transform: translateY(-50%);
+  color: var(--military-green-bright);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  background: transparent;
+  padding: 0;
+  border: none;
+  animation: copyFadeIn 0.3s ease-out;
+  pointer-events: none;
+  z-index: 10;
+  text-shadow: 0 0 12px rgba(74, 157, 74, 0.8);
+}
+
+@keyframes copyFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* Join lobby input and paste button */
 .lobby-id-box input {
   flex: 1;
   padding: 0.875rem 1rem;
@@ -284,13 +354,11 @@
   letter-spacing: 0.15em;
   text-align: center;
   text-transform: uppercase;
-  background: var(--tactical-grey-900);
+  background: transparent;
   border: none;
-  border-right: 1px solid var(--tactical-grey-700);
   color: var(--military-green-accent);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-  transition: var(--transition-fast);
   outline: none;
+  transition: var(--transition-fast);
 }
 
 .lobby-id-box input::placeholder {
@@ -300,22 +368,47 @@
 }
 
 .lobby-id-box input:focus {
-  background: var(--tactical-grey-800);
   color: var(--military-green-bright);
 }
 
-.lobby-id-button,
 .lobby-id-paste-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1rem;
+  background: var(--tactical-black);
+  border: none;
+  border-left: 1px solid var(--tactical-grey-700);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  color: var(--tactical-grey-400);
+  flex-shrink: 0;
+}
+
+.lobby-id-paste-button:hover {
+  background: var(--tactical-grey-800);
+  color: var(--military-green-accent);
+}
+
+.lobby-id-paste-button:active {
+  background: var(--military-green);
+  color: var(--tactical-black);
+}
+
+.lobby-id-paste-button-icon {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+}
+
+/* Legacy button styles (for compatibility) */
+.lobby-id-button {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   padding: 0.875rem 1rem;
-  background: linear-gradient(
-    180deg,
-    var(--tactical-grey-700) 0%,
-    var(--tactical-grey-800) 100%
-  );
+  background: transparent;
   border: none;
   cursor: pointer;
   transition: var(--transition-fast);
@@ -326,49 +419,10 @@
   text-transform: uppercase;
 }
 
-.lobby-id-button:hover,
-.lobby-id-paste-button:hover {
-  background: linear-gradient(
-    180deg,
-    var(--tactical-grey-600) 0%,
-    var(--tactical-grey-700) 100%
-  );
-  color: var(--military-green-accent);
-}
-
-.lobby-id-button:active,
-.lobby-id-paste-button:active {
-  background: var(--military-green);
-  color: var(--tactical-black);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.lobby-id-paste-button {
-  padding: 0.875rem;
-  min-width: 52px;
-  border-left: 1px solid var(--tactical-grey-700);
-}
-
-.lobby-id-paste-button-icon,
-.visibility-icon,
 .clipboard-icon {
   width: 18px;
   height: 18px;
   color: currentColor;
-}
-
-.copy-success-icon {
-  color: var(--military-green-accent);
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.lobby-id {
-  font-family: monospace;
-  font-size: 1.125rem;
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.15em;
-  color: var(--military-green-accent);
 }
 
 .message-area {
