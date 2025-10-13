@@ -57,15 +57,35 @@
       .bg-image {
         content: "";
         background-image: url("/images/EuropeBackground.webp");
-        background-position: center;
+        background-position: 0% 0%;
         background-attachment: fixed;
-        background-size: cover;
+        background-size: 150%;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -1;
+        animation: slowPan 120s linear infinite;
+        transition: background-image 2s ease-in-out;
+      }
+
+      @keyframes slowPan {
+        0% {
+          background-position: 0% 0%;
+        }
+        25% {
+          background-position: 100% 0%;
+        }
+        50% {
+          background-position: 100% 100%;
+        }
+        75% {
+          background-position: 0% 100%;
+        }
+        100% {
+          background-position: 0% 0%;
+        }
       }
 
       .bg-image::before {
@@ -73,11 +93,33 @@
         position: absolute;
         width: 100%;
         height: 100vh;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(3px);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(45, 90, 45, 0.15) 0%,
+          rgba(61, 69, 86, 0.3) 50%,
+          rgba(10, 14, 20, 0.5) 100%
+        );
+        mix-blend-mode: multiply;
+      }
+
+      .bg-image::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          rgba(74, 157, 74, 0.08) 0%,
+          transparent 30%,
+          transparent 70%,
+          rgba(101, 67, 33, 0.08) 100%
+        );
+        pointer-events: none;
       }
 
       .dark .bg-image {
-        filter: brightness(0.4) saturate(0.3) contrast(1.2);
+        filter: brightness(0.35) saturate(0.4) contrast(1.3) grayscale(0.3);
       }
 
       /* display:none if child has class parent-hidden since we can't use shadow DOM in Lit due to Tailwind */
