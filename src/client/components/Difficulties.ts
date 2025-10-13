@@ -11,37 +11,31 @@ export class DifficultyDisplay extends LitElement {
       justify-content: center;
       align-items: center;
       height: 40px;
-      gap: 8px;
-      margin: 6px 0 0 0;
-      padding: 4px;
-      background: linear-gradient(180deg, #0a0e14 0%, #000000 100%);
-      border: 1px solid #252b3b;
-      border-radius: 0;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+      gap: 6px;
+      margin: 4px 0 0 0;
     }
 
     .difficulty-skull {
-      width: 18px;
-      height: 18px;
-      opacity: 0.2;
+      width: 16px;
+      height: 16px;
+      opacity: 0.3;
       transition: all 0.2s ease;
-      color: #3d4556;
     }
 
     .difficulty-skull.big {
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
     }
 
     .difficulty-skull.active {
       opacity: 1;
       color: #dc2626;
-      filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.6));
+      filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.4));
       transform: translateY(-1px);
     }
 
     :host(:hover) .difficulty-skull.active {
-      filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.8));
+      filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.6));
       transform: translateY(-2px);
     }
   `;
