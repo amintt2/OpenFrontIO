@@ -59,7 +59,7 @@
         background-image: url("/images/EuropeBackground.webp");
         background-position: 0% 0%;
         background-attachment: fixed;
-        background-size: 150%;
+        background-size: 250%;
         position: fixed;
         top: 0;
         left: 0;
@@ -470,6 +470,31 @@
     ></script>
 
     <!-- Background Animation -->
-    <script type="module" src="./backgroundAnimation.ts"></script>
+    <script>
+      (function () {
+        function initBackgroundAnimation() {
+          const bgElement = document.querySelector(".bg-image");
+          if (!bgElement) {
+            console.log("Background element not found");
+            return;
+          }
+
+          // Set the background image
+          bgElement.style.backgroundImage =
+            "url('/images/EuropeBackground.webp')";
+          console.log("Background animation initialized");
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === "loading") {
+          document.addEventListener(
+            "DOMContentLoaded",
+            initBackgroundAnimation,
+          );
+        } else {
+          initBackgroundAnimation();
+        }
+      })();
+    </script>
   </body>
 </html>
