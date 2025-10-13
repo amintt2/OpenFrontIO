@@ -239,40 +239,69 @@
   border: 1px solid var(--tactical-grey-700);
 }
 
-/* Tactical Lobby Styles */
+/* Tactical Lobby Styles - Integrated with 90-degree borders */
 .lobby-id-box {
   display: flex;
-  gap: 8px;
-  margin-bottom: 1rem;
-  align-items: center;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  align-items: stretch;
+  position: relative;
+  background: var(--tactical-black);
+  border: 2px solid var(--tactical-grey-700);
+  padding: 2px;
+}
+
+/* 90-degree corners for lobby ID box */
+.lobby-id-box::before,
+.lobby-id-box::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-color: var(--military-green-accent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lobby-id-box::before {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+
+.lobby-id-box::after {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
 }
 
 .lobby-id-box input {
   flex: 1;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  padding: 0.875rem 1rem;
+  font-size: 1.125rem;
   font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.15em;
   text-align: center;
   text-transform: uppercase;
-  background: var(--tactical-grey-800);
-  border: var(--border-tactical);
-  border-radius: var(--radius-sharp);
-  color: var(--fontColor);
-  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  background: var(--tactical-grey-900);
+  border: none;
+  border-right: 1px solid var(--tactical-grey-700);
+  color: var(--military-green-accent);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: var(--transition-fast);
   outline: none;
 }
 
 .lobby-id-box input::placeholder {
-  color: var(--tactical-grey-500);
-  font-size: 0.875rem;
+  color: var(--tactical-grey-600);
+  font-size: 0.75rem;
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 .lobby-id-box input:focus {
-  border-color: var(--military-green);
-  box-shadow: var(--shadow-tactical-md), var(--glow-green);
-  background: var(--tactical-grey-700);
+  background: var(--tactical-grey-800);
+  color: var(--military-green-bright);
 }
 
 .lobby-id-button,
@@ -280,16 +309,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 0.75rem 1rem;
-  background: var(--tactical-grey-800);
-  border: var(--border-tactical);
-  border-radius: var(--radius-sharp);
+  gap: 6px;
+  padding: 0.875rem 1rem;
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-700) 0%,
+    var(--tactical-grey-800) 100%
+  );
+  border: none;
   cursor: pointer;
   transition: var(--transition-fast);
-  box-shadow: var(--shadow-tactical-sm);
-  color: var(--fontColor);
-  font-size: 0.875rem;
+  color: var(--tactical-grey-300);
+  font-size: 0.75rem;
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
@@ -297,28 +328,47 @@
 
 .lobby-id-button:hover,
 .lobby-id-paste-button:hover {
-  background: var(--tactical-grey-700);
-  border-color: var(--military-green);
-  box-shadow: var(--shadow-tactical-md), var(--glow-green);
-  transform: translateY(-1px);
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-600) 0%,
+    var(--tactical-grey-700) 100%
+  );
+  color: var(--military-green-accent);
 }
 
 .lobby-id-button:active,
 .lobby-id-paste-button:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  background: var(--military-green);
+  color: var(--tactical-black);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .lobby-id-paste-button {
-  padding: 0.75rem;
-  min-width: 48px;
+  padding: 0.875rem;
+  min-width: 52px;
+  border-left: 1px solid var(--tactical-grey-700);
 }
 
 .lobby-id-paste-button-icon,
-.visibility-icon {
+.visibility-icon,
+.clipboard-icon {
   width: 18px;
   height: 18px;
-  color: var(--tactical-grey-300);
+  color: currentColor;
+}
+
+.copy-success-icon {
+  color: var(--military-green-accent);
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.lobby-id {
+  font-family: monospace;
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.15em;
+  color: var(--military-green-accent);
 }
 
 .message-area {
@@ -370,14 +420,413 @@
 }
 
 .option-title {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--military-green-accent);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--military-green-accent);
+  text-align: center;
+  font-family: var(--font-tactical);
+  position: relative;
+}
+
+/* 90-degree corner accents on section titles */
+.option-title::before,
+.option-title::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 30px;
+  height: 2px;
+  background: var(--tactical-grey-700);
+}
+
+.option-title::before {
+  left: 0;
+}
+
+.option-title::after {
+  right: 0;
+}
+
+/* Map Category Titles (Continental, Regional, etc.) */
+.map-category-title {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tactical-grey-400);
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-family: var(--font-tactical);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--tactical-grey-800) 50%,
+    transparent 100%
+  );
+  border-top: 1px solid var(--tactical-grey-700);
+  border-bottom: 1px solid var(--tactical-grey-700);
+  position: relative;
+}
+
+.map-category-title::before,
+.map-category-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 1px;
+  background: var(--military-green-accent);
+}
+
+.map-category-title::before {
+  left: 10%;
+}
+
+.map-category-title::after {
+  right: 10%;
+}
+
+/* Tactical Checkboxes - Integrated Modal Style */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-800) 0%,
+    var(--tactical-black) 100%
+  );
+  border: 2px solid var(--tactical-grey-600);
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-fast);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+input[type="checkbox"]:hover {
+  border-color: var(--military-green);
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-700) 0%,
+    var(--tactical-grey-800) 100%
+  );
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.5),
+    var(--glow-green);
+}
+
+input[type="checkbox"]:checked {
+  background: linear-gradient(
+    180deg,
+    var(--military-green-light) 0%,
+    var(--military-green) 100%
+  );
+  border-color: var(--military-green-accent);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.3),
+    var(--glow-green);
+}
+
+input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 2px solid var(--tactical-black);
+  border-width: 0 0 3px 3px;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 4px;
+  height: 9px;
+  border: solid var(--tactical-black);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+/* Tactical Labels */
+label {
+  font-size: 0.813rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--tactical-grey-300);
+  cursor: pointer;
+  user-select: none;
+}
+
+label:hover {
+  color: var(--military-green-accent);
+}
+
+/* Tactical Number Inputs */
+input[type="number"] {
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-align: center;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  color: var(--fontColor);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  transition: var(--transition-fast);
+  outline: none;
+  width: 100%;
+  max-width: 120px;
+}
+
+input[type="number"]:focus {
+  border-color: var(--military-green);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+  background: var(--tactical-grey-700);
+}
+
+input[type="number"]:hover {
+  border-color: var(--tactical-grey-500);
+  background: var(--tactical-grey-700);
+}
+
+/* Remove spinner buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Tactical Select Dropdowns */
+select {
+  padding: 0.625rem 2rem 0.625rem 0.875rem;
   font-size: 0.875rem;
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
+  background: var(--tactical-grey-800);
+  border: var(--border-tactical);
+  border-radius: var(--radius-sharp);
+  color: var(--fontColor);
+  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  transition: var(--transition-fast);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
+
+select:hover {
+  border-color: var(--military-green);
+  background-color: var(--tactical-grey-700);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+}
+
+select:focus {
+  border-color: var(--military-green-accent);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+}
+
+/* Tactical Range Sliders - Integrated Modal Style */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--tactical-black);
+  border: 1px solid var(--tactical-grey-700);
+  border-radius: 0;
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 24px;
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-600) 0%,
+    var(--tactical-grey-700) 100%
+  );
+  border: 2px solid var(--military-green-accent);
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    var(--glow-green);
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-500) 0%,
+    var(--tactical-grey-600) 100%
+  );
+  border-color: var(--military-green-bright);
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.6),
+    var(--glow-green);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  background: var(--military-green);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 24px;
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-600) 0%,
+    var(--tactical-grey-700) 100%
+  );
+  border: 2px solid var(--military-green-accent);
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    var(--glow-green);
+  transition: var(--transition-fast);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-500) 0%,
+    var(--tactical-grey-600) 100%
+  );
+  border-color: var(--military-green-bright);
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.6),
+    var(--glow-green);
+}
+
+input[type="range"]::-moz-range-thumb:active {
+  background: var(--military-green);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Range track fill effect */
+input[type="range"]::-moz-range-track {
+  background: var(--tactical-black);
+  border: 1px solid var(--tactical-grey-700);
+  height: 4px;
+  border-radius: 0;
+}
+
+/* Tactical Option Images */
+.option-image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-sharp);
+  border: 1px solid var(--tactical-grey-700);
+  box-shadow: var(--shadow-tactical-sm);
+  position: relative;
+}
+
+.option-image img {
+  width: 100%;
+  aspect-ratio: 4/2;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.8) contrast(1.1);
+  transition: var(--transition-fast);
+}
+
+.option-card:hover .option-image img {
+  filter: brightness(1) contrast(1.2);
+  transform: scale(1.05);
+}
+
+.option-card.selected .option-image {
+  border-color: var(--military-green-accent);
+  box-shadow: var(--shadow-tactical-md), var(--glow-green);
+}
+
+.option-card.selected .option-image img {
+  filter: brightness(1.1) contrast(1.2);
+}
+
+/* Tactical Flex Layouts */
+.flex {
+  display: flex;
+}
+
+.flex.justify-center {
+  justify-content: center;
+}
+
+.flex.items-center {
+  align-items: center;
+}
+
+.flex.gap-2 {
+  gap: 0.5rem;
+}
+
+.flex.gap-4 {
+  gap: 1rem;
+}
+
+.flex.flex-col {
+  flex-direction: column;
+}
+
+.flex.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* Tactical Copy Success Animation */
+@keyframes copySuccess {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.copy-success {
+  animation: copySuccess 1.5s ease-out;
   color: var(--military-green-accent);
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: var(--border-tactical-accent);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 .options-layout {
@@ -404,68 +853,101 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: var(--tactical-grey-800);
-  border: var(--border-tactical);
-  border-radius: var(--radius-sharp);
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-800) 0%,
+    var(--tactical-grey-900) 100%
+  );
+  border: 2px solid var(--tactical-grey-700);
+  border-radius: 0;
   cursor: pointer;
   transition: var(--transition-fast);
-  box-shadow: var(--shadow-tactical-sm), var(--shadow-border-top);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
+/* 90-degree corner accents on option cards */
 .option-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
-  transition: left 0.5s ease-out;
+  top: -2px;
+  left: -2px;
+  width: 14px;
+  height: 14px;
+  border-style: solid;
+  border-color: var(--tactical-grey-600);
+  border-width: 2px 0 0 2px;
+  transition: var(--transition-fast);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.option-card::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  border-style: solid;
+  border-color: var(--tactical-grey-600);
+  border-width: 0 2px 2px 0;
+  transition: var(--transition-fast);
+  opacity: 0.5;
   pointer-events: none;
 }
 
 .option-card:hover {
   transform: translateY(-2px);
   border-color: var(--military-green);
-  background: var(--tactical-grey-700);
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-700) 0%,
+    var(--tactical-grey-800) 100%
+  );
   box-shadow:
-    var(--shadow-tactical-md), var(--glow-green), var(--shadow-border-top);
+    0 3px 8px rgba(0, 0, 0, 0.6),
+    var(--glow-green);
 }
 
-.option-card:hover::before {
-  left: 100%;
+.option-card:hover::before,
+.option-card:hover::after {
+  border-color: var(--military-green-accent);
+  opacity: 1;
 }
 
 .option-card.selected {
-  border: var(--border-tactical-active);
-  background: var(--tactical-grey-700);
+  border: 2px solid var(--military-green-accent);
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-700) 0%,
+    var(--tactical-grey-800) 100%
+  );
   box-shadow:
-    var(--shadow-tactical-md), var(--glow-green), var(--shadow-border-top);
+    0 4px 10px rgba(0, 0, 0, 0.7),
+    var(--glow-green);
 }
 
+.option-card.selected::before,
 .option-card.selected::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--military-green-accent);
-  box-shadow: var(--glow-green);
+  border-color: var(--military-green-bright);
+  opacity: 1;
+  width: 18px;
+  height: 18px;
 }
 
 .option-card-title {
-  font-size: 14px;
-  color: #aaa;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--tactical-grey-300);
   text-align: center;
-  margin: 0 0 4px 0;
+  margin: 0;
+  padding-top: 6px;
+  position: relative;
+  z-index: 1;
 }
 
 .option-image {

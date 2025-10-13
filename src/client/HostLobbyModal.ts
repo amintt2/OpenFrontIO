@@ -172,9 +172,7 @@ export class HostLobbyModal extends LitElement {
               ${Object.entries(mapCategories).map(
                 ([categoryKey, maps]) => html`
                   <div class="w-full mb-4">
-                    <h3
-                      class="text-lg font-semibold mb-2 text-center text-gray-300"
-                    >
+                    <h3 class="map-category-title">
                       ${translateText(`map_categories.${categoryKey}`)}
                     </h3>
                     <div class="flex flex-row flex-wrap justify-center gap-4">

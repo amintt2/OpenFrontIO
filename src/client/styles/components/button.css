@@ -1,8 +1,12 @@
 /* Military/Tactical Button Styles */
 .c-button {
   position: relative;
-  background: var(--primaryColor);
-  color: var(--fontColorLight);
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-700) 0%,
+    var(--tactical-grey-800) 100%
+  );
+  color: var(--military-green-accent);
   cursor: pointer;
   outline: none;
   display: inline-block;
@@ -10,17 +14,19 @@
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
-  border: var(--border-tactical-accent);
+  border: 2px solid var(--military-green);
   text-align: center;
-  padding: 0.625rem 1.5rem;
-  border-radius: var(--radius-sharp);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
   transition: var(--transition-fast);
-  box-shadow: var(--shadow-tactical-md), var(--shadow-border-top);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
 
   @media (min-width: 1024px) {
     font-size: 0.875rem;
-    padding: 0.75rem 2rem;
+    padding: 0.875rem 2rem;
   }
 }
 
@@ -48,27 +54,41 @@
 
 .c-button:hover,
 .c-button:focus {
-  background: var(--primaryColorHover);
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-600) 0%,
+    var(--tactical-grey-700) 100%
+  );
   border-color: var(--military-green-bright);
+  color: var(--military-green-bright);
   box-shadow:
-    var(--shadow-tactical-lg), var(--glow-green), var(--shadow-border-top);
+    0 3px 6px rgba(0, 0, 0, 0.6),
+    var(--glow-green),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transform: translateY(-1px);
   transition: var(--transition-fast);
 }
 
 .c-button:active {
   transform: translateY(0);
-  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
-  background: var(--primaryColorActive);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: var(--military-green);
+  color: var(--tactical-black);
+  border-color: var(--military-green-accent);
 }
 
 .c-button:disabled {
-  background: var(--primaryColorDisabled);
-  border-color: var(--tactical-grey-600);
-  opacity: 0.5;
+  background: linear-gradient(
+    180deg,
+    var(--tactical-grey-800) 0%,
+    var(--tactical-grey-900) 100%
+  );
+  border-color: var(--tactical-grey-700);
+  color: var(--tactical-grey-600);
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
-  box-shadow: var(--shadow-tactical-sm);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
   transition: var(--transition-fast);
 }
 

@@ -1,4 +1,4 @@
-/* Military/Tactical Modal Styles */
+/* Military/Tactical Modal Styles with 90-degree Corner Borders */
 .c-modal {
   position: fixed;
   padding: 1rem;
@@ -7,7 +7,7 @@
   bottom: 0;
   right: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.9);
   overflow-y: auto;
   display: flex;
   align-items: center;
@@ -25,14 +25,69 @@
 }
 
 .c-modal__wrapper {
-  background: var(--tactical-grey-800);
-  border-radius: var(--radius-sharp);
+  background: var(--tactical-grey-900);
+  border-radius: 0;
   min-width: 340px;
   max-width: 860px;
-  border: var(--border-tactical);
-  box-shadow: var(--shadow-tactical-xl), var(--shadow-border-top);
+  border: none;
+  box-shadow: var(--shadow-tactical-xl);
   overflow: hidden;
   animation: modalSlideDown 0.25s ease-out;
+  position: relative;
+}
+
+/* 90-degree corner borders - tactical frame */
+.c-modal__wrapper::before,
+.c-modal__wrapper::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-style: solid;
+  border-color: var(--military-green-accent);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Top-left corner */
+.c-modal__wrapper::before {
+  top: 0;
+  left: 0;
+  border-width: 3px 0 0 3px;
+}
+
+/* Bottom-right corner */
+.c-modal__wrapper::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 3px 3px 0;
+}
+
+/* Additional corners using pseudo-elements on header and content */
+.c-modal__header::before,
+.c-modal__content::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-style: solid;
+  border-color: var(--military-green-accent);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Top-right corner */
+.c-modal__header::before {
+  top: 0;
+  right: 0;
+  border-width: 3px 3px 0 0;
+}
+
+/* Bottom-left corner */
+.c-modal__content::after {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 3px 3px;
 }
 
 @keyframes modalSlideDown {
@@ -48,18 +103,17 @@
 
 .c-modal__header {
   position: relative;
-  border-top-left-radius: var(--radius-sharp);
-  border-top-right-radius: var(--radius-sharp);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  background: var(--panel-bg);
-  border-bottom: var(--border-tactical-accent);
+  background: var(--tactical-black);
+  border-bottom: 2px solid var(--military-green-accent);
   text-align: center;
-  color: var(--fontColor);
-  padding: 1rem 3rem 1rem 1.5rem;
-  box-shadow: var(--shadow-border-bottom);
+  color: var(--military-green-accent);
+  padding: 1.25rem 3rem 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-tactical);
 }
 
 .c-modal__close {
@@ -68,38 +122,37 @@
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sharp);
-  background: var(--tactical-grey-700);
-  color: var(--tactical-grey-300);
-  font-size: 18px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--tactical-grey-400);
+  font-size: 20px;
   font-weight: 700;
   transition: var(--transition-fast);
-  border: var(--border-tactical);
-  box-shadow: var(--shadow-tactical-sm);
+  border: 2px solid var(--tactical-grey-600);
 }
 
 .c-modal__close:hover {
   background: var(--alert-red);
   color: var(--fontColorLight);
-  border-color: #dc2626;
-  box-shadow: var(--shadow-tactical-md), var(--glow-red);
-  transform: translateY(-50%) scale(1.05);
+  border-color: var(--alert-red);
+  box-shadow: var(--glow-red);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .c-modal__close:active {
   transform: translateY(-50%) scale(0.95);
-  box-shadow: var(--shadow-tactical-sm), var(--shadow-inset);
+  box-shadow: var(--shadow-inset);
 }
 
 .c-modal__content {
   position: relative;
   color: var(--fontColor);
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   max-height: 60dvh;
   overflow-y: auto;
   background: var(--tactical-grey-900);
@@ -107,22 +160,21 @@
 
 /* Tactical scrollbar */
 .c-modal__content::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 .c-modal__content::-webkit-scrollbar-track {
-  background: var(--tactical-grey-800);
-  border-left: var(--border-tactical);
+  background: var(--tactical-black);
+  border-left: 1px solid var(--tactical-grey-700);
 }
 
 .c-modal__content::-webkit-scrollbar-thumb {
   background: var(--military-green);
-  border-radius: var(--radius-sharp);
-  border: 1px solid var(--tactical-grey-700);
+  border-radius: 0;
 }
 
 .c-modal__content::-webkit-scrollbar-thumb:hover {
-  background: var(--military-green-light);
+  background: var(--military-green-accent);
   box-shadow: var(--glow-green);
 }
 
