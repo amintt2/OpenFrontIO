@@ -38,14 +38,14 @@ export class OModal extends LitElement {
     }
 
     .c-modal__wrapper {
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--tactical-grey-900, #1a1f2e);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-radius: 0;
       min-width: 340px;
       max-width: 860px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: none;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       overflow: hidden;
       animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -72,20 +72,26 @@ export class OModal extends LitElement {
 
     .c-modal__header {
       position: relative;
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-      font-size: 20px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: -0.025em;
-      background: linear-gradient(
-        135deg,
-        rgba(102, 126, 234, 0.1) 0%,
-        rgba(118, 75, 162, 0.1) 100%
-      );
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--tactical-black, #0a0e14);
+      border-bottom: 2px solid var(--military-green-accent, #5cb85c);
       text-align: center;
-      color: #1f2937;
+      color: var(--military-green-accent, #5cb85c);
       padding: 1.25rem 3rem 1.25rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      font-family: var(
+        --font-tactical,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Roboto",
+        monospace
+      );
     }
 
     .c-modal__close {
@@ -100,30 +106,32 @@ export class OModal extends LitElement {
       align-items: center;
       justify-content: center;
       border-radius: 0;
-      background: rgba(0, 0, 0, 0.05);
-      color: #1f2937;
+      background: transparent;
+      color: var(--tactical-grey-400, #6b7280);
       font-size: 20px;
-      font-weight: 300;
+      font-weight: 700;
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid transparent;
+      border: 2px solid var(--tactical-grey-600, #4b5563);
     }
 
     .c-modal__close:hover {
-      background: rgba(239, 68, 68, 0.1);
-      color: #ef4444;
-      border-color: rgba(239, 68, 68, 0.2);
+      background: var(--alert-red, #dc2626);
+      color: var(--fontColorLight, #ffffff);
+      border-color: var(--alert-red, #dc2626);
+      box-shadow: 0 0 12px rgba(220, 38, 38, 0.5);
       transform: translateY(-50%) scale(1.1);
     }
 
     .c-modal__close:active {
       transform: translateY(-50%) scale(0.95);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .c-modal__content {
-      background: rgba(255, 255, 255, 0.5);
+      background: var(--tactical-grey-900, #1a1f2e);
       position: relative;
-      color: #1f2937;
-      padding: 1.75rem;
+      color: var(--fontColor, #f3f4f6);
+      padding: 2rem 1.5rem;
       max-height: 60dvh;
       overflow-y: auto;
     }
