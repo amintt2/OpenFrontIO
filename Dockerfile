@@ -12,6 +12,15 @@ RUN apt-get update && apt-get install -y \
     jq \
     wget \
     apache2-utils \
+    python3 \
+    make \
+    g++ \
+    build-essential \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Update worker_connections in the existing nginx.conf
@@ -56,6 +65,11 @@ RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
     curl \
+    libcairo2 \
+    libpango1.0-0 \
+    libjpeg62-turbo \
+    libgif7 \
+    librsvg2-2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Nginx configuration and ensure it's used instead of the default
