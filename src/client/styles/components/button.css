@@ -10,23 +10,36 @@
   cursor: pointer;
   outline: none;
   display: inline-block;
-  font-size: 0.813rem;
+  font-size: 0.875rem;
   font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   border: 2px solid var(--military-green);
   text-align: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.5rem;
   border-radius: 0;
   transition: var(--transition-fast);
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
+  font-family: var(
+    --font-tactical,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    monospace
+  );
+
+  @media (min-width: 768px) {
+    font-size: 0.9375rem;
+    padding: 1rem 1.75rem;
+  }
 
   @media (min-width: 1024px) {
-    font-size: 0.875rem;
-    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    padding: 1.125rem 2rem;
   }
 }
 

@@ -202,6 +202,43 @@
   box-shadow: var(--shadow-tactical-md), var(--glow-red);
 }
 
+/* Tactical Player Info Container - Continental Style */
+.tactical-player-info-container {
+  padding: 1.25rem 2rem;
+  background: linear-gradient(
+    90deg,
+    transparent 20%,
+    #2f7c2f 50%,
+    transparent 100%
+  );
+  border-top: 1px solid var(--tactical-grey-500);
+  border-bottom: 1px solid var(--tactical-grey-500);
+  position: flex;
+  margin-left: -2rem;
+  margin-right: -2rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.tactical-player-info-container::before,
+.tactical-player-info-container::after {
+  content: "";
+  position: flex;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 1px;
+  background: var(--military-green-accent);
+}
+
+.tactical-player-info-container::before {
+  left: 5%;
+}
+
+.tactical-player-info-container::after {
+  right: 5%;
+}
+
 /* Tactical Flag Button */
 .tactical-flag-button {
   width: 100%;
@@ -212,7 +249,7 @@
   padding: 4px;
   background: var(--tactical-grey-800);
   border: var(--border-tactical);
-  border-radius: var(--radius-sharp);
+  border-radius: 0;
   cursor: pointer;
   transition: var(--transition-fast);
   box-shadow: var(--shadow-tactical-sm);

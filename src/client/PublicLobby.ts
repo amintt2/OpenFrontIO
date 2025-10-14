@@ -114,64 +114,72 @@ export class PublicLobby extends LitElement {
     const mapImageSrc = this.mapImages.get(lobby.gameID);
 
     return html`
-      <button
-        @click=${() => this.lobbyClicked(lobby)}
-        ?disabled=${this.isButtonDebounced}
-        class="isolate grid h-40 grid-cols-[100%] grid-rows-[100%] place-content-stretch w-full overflow-hidden ${this
-          .isLobbyHighlighted
-          ? "bg-gradient-to-r from-green-600 to-green-500"
-          : "bg-gradient-to-r from-blue-600 to-blue-500"} text-white font-medium rounded-xl transition-opacity duration-200 hover:opacity-90 ${this
-          .isButtonDebounced
-          ? "opacity-70 cursor-not-allowed"
-          : ""}"
-      >
-        ${mapImageSrc
-          ? html`<img
-              src="${mapImageSrc}"
-              alt="${lobby.gameConfig.gameMap}"
-              class="place-self-start col-span-full row-span-full h-full -z-10"
-              style="mask-image: linear-gradient(to left, transparent, #fff)"
-            />`
-          : html`<div
-              class="place-self-start col-span-full row-span-full h-full -z-10 bg-gray-300"
-            ></div>`}
-        <div
-          class="flex flex-col justify-between h-full col-span-full row-span-full p-4 md:p-6 text-right z-0"
+      <div class="px-8 md:px-12 lg:px-16">
+        <button
+          @click=${() => this.lobbyClicked(lobby)}
+          ?disabled=${this.isButtonDebounced}
+          class="isolate grid h-48 md:h-56 lg:h-64 grid-cols-[100%] grid-rows-[100%] place-content-stretch w-full overflow-hidden ${this
+            .isLobbyHighlighted
+            ? "bg-gradient-to-r from-green-800 via-green-700 to-green-800"
+            : "bg-gradient-to-r from-green-800 via-green-700 to-green-800"} text-white font-bold rounded-none transition-all duration-200 hover:opacity-90 border-3 border-[#4a9d4a] shadow-[0_0_15px_rgba(74,157,74,0.4)] hover:shadow-[0_0_20px_rgba(74,157,74,0.6)] ${this
+            .isButtonDebounced
+            ? "opacity-70 cursor-not-allowed"
+            : ""}"
+          style="font-family: var(--font-tactical, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', monospace); letter-spacing: 0.1em;"
         >
-          <div>
-            <div class="text-lg md:text-2xl font-semibold">
-              ${translateText("public_lobby.join")}
+          ${mapImageSrc
+            ? html`<img
+                src="${mapImageSrc}"
+                alt="${lobby.gameConfig.gameMap}"
+                class="place-self-start col-span-full row-span-full -z-10 object-cover object-center"
+                style="mask-image: linear-gradient(to right, #fff 50%, transparent 85%); width: 75%; height: 100%;"
+              />`
+            : html`<div
+                class="place-self-start col-span-full row-span-full h-full -z-10 bg-gray-300"
+                style="width: 75%;"
+              ></div>`}
+          <div
+            class="flex flex-col justify-between h-full col-span-full row-span-full p-4 md:p-6 text-right z-0"
+          >
+            <div>
+              <div
+                class="text-xl md:text-2xl font-bold uppercase tracking-wider"
+              >
+                ${translateText("public_lobby.join")}
+              </div>
+              <div class="text-sm md:text-base font-semibold text-white mt-1">
+                <span
+                  class="text-xs md:text-sm ${this.isLobbyHighlighted
+                    ? "text-green-900"
+                    : "text-green-900"} bg-white rounded-none px-2 py-1 font-bold uppercase"
+                >
+                  ${lobby.gameConfig.gameMode === GameMode.Team
+                    ? typeof teamCount === "string"
+                      ? translateText(`public_lobby.teams_${teamCount}`)
+                      : translateText("public_lobby.teams", {
+                          num: teamCount ?? 0,
+                        })
+                    : translateText("game_mode.ffa")}</span
+                >
+                <span class="ml-2"
+                  >${translateText(
+                    `map.${lobby.gameConfig.gameMap.toLowerCase().replace(/\s+/g, "")}`,
+                  )}</span
+                >
+              </div>
             </div>
-            <div class="text-md font-medium text-blue-100">
-              <span
-                class="text-sm ${this.isLobbyHighlighted
-                  ? "text-green-600"
-                  : "text-blue-600"} bg-white rounded-sm px-1"
-              >
-                ${lobby.gameConfig.gameMode === GameMode.Team
-                  ? typeof teamCount === "string"
-                    ? translateText(`public_lobby.teams_${teamCount}`)
-                    : translateText("public_lobby.teams", {
-                        num: teamCount ?? 0,
-                      })
-                  : translateText("game_mode.ffa")}</span
-              >
-              <span
-                >${translateText(
-                  `map.${lobby.gameConfig.gameMap.toLowerCase().replace(/\s+/g, "")}`,
-                )}</span
-              >
-            </div>
-          </div>
 
-          <div>
-            <div class="text-md font-medium text-blue-100">
-              ${lobby.numClients} / ${lobby.gameConfig.maxPlayers}
+            <div>
+              <div class="text-base md:text-lg font-bold text-white">
+                ${lobby.numClients} / ${lobby.gameConfig.maxPlayers}
+              </div>
+              <div class="text-base md:text-lg font-bold text-white">
+                ${timeDisplay}
+              </div>
             </div>
-            <div class="text-md font-medium text-blue-100">${timeDisplay}</div>
           </div>
-        </div>
-      </button>
+        </button>
+      </div>
     `;
   }
 

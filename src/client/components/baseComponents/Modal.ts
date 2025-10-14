@@ -100,18 +100,20 @@ export class OModal extends LitElement {
       right: 1.25rem;
       top: 50%;
       transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 0;
+      border-radius: 2px;
       background: transparent;
       color: var(--tactical-grey-400, #6b7280);
       font-size: 20px;
       font-weight: 700;
+      text-align: center;
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       border: 2px solid var(--tactical-grey-600, #4b5563);
+      padding: 3px;
     }
 
     .c-modal__close:hover {
@@ -176,13 +178,15 @@ export class OModal extends LitElement {
       }
 
       .c-modal__close {
-        background: rgba(255, 255, 255, 0.05);
-        color: #f3f4f6;
+        background: transparent;
+        color: var(--tactical-grey-400, #6b7280);
+        border: 2px solid var(--tactical-grey-600, #4b5563);
       }
 
       .c-modal__close:hover {
-        background: rgba(239, 68, 68, 0.2);
-        color: #fca5a5;
+        background: var(--alert-red, #dc2626);
+        color: var(--fontColorLight, #ffffff);
+        border-color: var(--alert-red, #dc2626);
       }
 
       .c-modal__content {
