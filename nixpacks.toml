@@ -1,0 +1,16 @@
+[phases.setup]
+nixPkgs = ["nodejs-24_x", "npm-10_x"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build-prod"]
+
+[start]
+cmd = "npm run start:server"
+
+[variables]
+NODE_ENV = "production"
+GAME_ENV = "dev"
+

@@ -58,11 +58,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy installed packages from dependencies stage
-RUN curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb > cloudflared.deb \
-    && dpkg -i cloudflared.deb \
-    && rm cloudflared.deb
-
 # Copy Nginx configuration and ensure it's used instead of the default
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN rm -f /etc/nginx/sites-enabled/default
@@ -86,13 +81,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY startup.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/startup.sh
 
-RUN mkdir -p /etc/cloudflared && \
-    chown -R node:node /etc/cloudflared && \
-    chmod -R 755 /etc/cloudflared
 
-# Set Cloudflared config directory to a volume mount location
-ENV CF_CONFIG_PATH=/etc/cloudflared/config.yml
-ENV CF_CREDS_PATH=/etc/cloudflared/creds.json
 
 # Use the startup script as the entrypoint
 ENTRYPOINT ["/usr/local/bin/startup.sh"]
