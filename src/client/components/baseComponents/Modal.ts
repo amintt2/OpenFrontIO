@@ -97,23 +97,23 @@ export class OModal extends LitElement {
     .c-modal__close {
       cursor: pointer;
       position: absolute;
-      right: 1.25rem;
+      right: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      width: 30px;
-      height: auto;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 2px;
+      border-radius: 0;
       background: transparent;
       color: var(--tactical-grey-400, #6b7280);
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       text-align: center;
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       border: 2px solid var(--tactical-grey-600, #4b5563);
-      padding: 3px;
+      padding: 0;
     }
 
     .c-modal__close:hover {

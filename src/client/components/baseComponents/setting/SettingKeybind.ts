@@ -37,13 +37,15 @@ export class SettingKeybind extends LitElement {
               </span>
 
               <button
-                class="text-xs text-gray-400 hover:text-white border border-gray-500 px-2 py-0.5 rounded transition"
+                class="c-button c-button--secondary"
+                style="padding: 4px 8px; font-size: 0.75rem;"
                 @click=${this.resetToDefault}
               >
                 ${translateText("user_setting.reset")}
               </button>
               <button
-                class="text-xs text-gray-400 hover:text-white border border-gray-500 px-2 py-0.5 rounded transition"
+                class="c-button c-button--secondary"
+                style="padding: 4px 8px; font-size: 0.75rem;"
                 @click=${this.unbindKey}
               >
                 ${translateText("user_setting.unbind")}

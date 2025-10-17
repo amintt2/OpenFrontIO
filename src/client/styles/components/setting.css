@@ -324,3 +324,158 @@
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
+
+/* Tactical theme overrides for Settings — responsive, sharp, military style */
+.settings-list {
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  align-items: stretch;
+}
+
+.setting-item {
+  background: var(--boxBackgroundColor);
+  border: var(--border-tactical);
+  border-radius: var(--radius-none);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  width: 100%;
+  max-width: 640px;
+  box-shadow: var(--shadow-tactical-sm);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+  gap: var(--spacing-sm);
+}
+
+.setting-item:hover {
+  background: var(--boxBackgroundColorHover);
+  border-color: var(--military-green);
+}
+
+.setting-label {
+  color: var(--fontColor);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Make sliders full-width on small screens */
+.setting-input.slider.full-width {
+  width: 100%;
+}
+
+/* Tactical slider */
+.setting-input.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(
+    to right,
+    var(--military-green) 50%,
+    var(--tactical-grey-600) 50%
+  );
+  border: 1px solid var(--tactical-grey-600);
+  border-radius: 0;
+  outline: none;
+  transition: background 0.2s ease;
+}
+
+.setting-input.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 0;
+  background: var(--fontColorLight);
+  border: 2px solid var(--military-green-accent);
+  cursor: pointer;
+}
+
+.setting-input.slider::-moz-range-track {
+  background-color: var(--tactical-grey-600);
+  height: 8px;
+  border-radius: 0;
+}
+
+.setting-input.slider::-moz-range-progress {
+  background-color: var(--military-green);
+  height: 8px;
+  border-radius: 0;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 13px;
+  color: var(--fontColorMuted);
+}
+
+/* Tactical number input */
+.setting-input.number {
+  min-width: 80px;
+  padding: 6px 8px;
+  border: var(--border-tactical);
+  border-radius: 0;
+  background-color: var(--tactical-black);
+  color: var(--fontColor);
+}
+
+/* Tactical toggle switch */
+.slider-round {
+  background-color: var(--alert-red);
+  border: var(--border-tactical-light);
+  border-radius: 0;
+}
+
+.slider-round::before {
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--fontColorLight);
+  border: 1px solid var(--tactical-grey-600);
+  border-radius: 0;
+}
+
+.switch input:checked + .slider-round {
+  background-color: var(--military-green);
+}
+
+/* Tactical key badge */
+.setting-key {
+  background-color: var(--tactical-black);
+  color: var(--fontColorLight);
+  border-radius: 0;
+  border: 1px solid var(--tactical-grey-700);
+  box-shadow: 0 2px 0 var(--tactical-grey-700);
+}
+
+/* Improved tactical switch dimensions and knob alignment */
+.switch {
+  width: 56px;
+  height: 24px;
+}
+
+.slider-round {
+  background-color: var(--tactical-grey-700);
+  border: 1px solid var(--tactical-grey-600);
+}
+
+.slider-round::before {
+  width: 16px;
+  height: 16px;
+  top: 3px;
+  left: 3px;
+  background-color: var(--fontColorLight);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* align knob to the right when checked without mis-centering */
+.switch input:checked + .slider-round {
+  background-color: var(--military-green);
+  border-color: var(--military-green-accent);
+  box-shadow: var(--glow-green);
+}
+
+.switch input:checked + .slider-round::before {
+  left: calc(100% - 19px);
+}

@@ -150,7 +150,7 @@
 }
 
 .c-modal__content {
-  position: relative;
+  position: static; /* ensure corner pseudo-element anchors to wrapper, not scrolling content */
   color: var(--fontColor);
   padding: 2rem 1.5rem;
   max-height: 60dvh;
