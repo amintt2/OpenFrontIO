@@ -30,7 +30,9 @@ export class SettingNumber extends LitElement {
 
   render() {
     return html`
-      <div class="setting-item${this.easter ? " easter-egg" : ""}">
+      <div
+        class="setting-item c-box v-stack${this.easter ? " easter-egg" : ""}"
+      >
         <div class="setting-label-group">
           <label class="setting-label" for="setting-number-input"
             >${this.label}</label

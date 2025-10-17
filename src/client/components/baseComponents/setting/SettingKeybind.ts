@@ -19,11 +19,13 @@ export class SettingKeybind extends LitElement {
 
   render() {
     return html`
-      <div class="setting-item column${this.easter ? " easter-egg" : ""}">
+      <div
+        class="setting-item c-box v-stack${this.easter ? " easter-egg" : ""}"
+      >
         <div class="setting-label-group">
           <label class="setting-label block mb-1">${this.label}</label>
 
-          <div class="setting-keybind-box">
+          <div class="setting-keybind-box h-stack between">
             <div class="setting-keybind-description">${this.description}</div>
 
             <div class="flex items-center gap-2">

@@ -53,7 +53,9 @@ export class SettingSlider extends LitElement {
 
   render() {
     return html`
-      <div class="setting-item vertical${this.easter ? " easter-egg" : ""}">
+      <div
+        class="setting-item c-box v-stack${this.easter ? " easter-egg" : ""}"
+      >
         <div class="setting-label-group">
           <label class="setting-label" for="setting-slider-input"
             >${this.label}</label

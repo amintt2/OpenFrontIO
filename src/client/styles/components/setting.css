@@ -273,9 +273,7 @@
   background-color: #4caf50;
 }
 
-.switch input:checked + .slider-round::before {
-  transform: translateX(24px);
-}
+/* Removed obsolete transform to prevent knob overshoot */
 
 .setting-label-group {
   display: flex;
@@ -478,4 +476,5 @@
 
 .switch input:checked + .slider-round::before {
   left: calc(100% - 19px);
+  transform: none;
 }

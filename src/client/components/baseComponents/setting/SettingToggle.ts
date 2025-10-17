@@ -27,8 +27,10 @@ export class SettingToggle extends LitElement {
 
   render() {
     return html`
-      <div class="setting-item vertical${this.easter ? " easter-egg" : ""}">
-        <div class="toggle-row">
+      <div
+        class="setting-item c-box v-stack${this.easter ? " easter-egg" : ""}"
+      >
+        <div class="h-stack between">
           <label class="setting-label" for=${this.id}>${this.label}</label>
           <label class="switch">
             <input
