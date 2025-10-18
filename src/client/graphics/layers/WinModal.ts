@@ -1,5 +1,5 @@
 import { LitElement, TemplateResult, html } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { customElement, query, state } from "lit/decorators.js";
 import { isInIframe, translateText } from "../../../client/Utils";
 import { ColorPalette, Pattern } from "../../../core/CosmeticSchemas";
 import { EventBus } from "../../../core/EventBus";
@@ -15,8 +15,15 @@ import { getUserMe } from "../../jwt";
 import { SendWinnerEvent } from "../../Transport";
 import { Layer } from "./Layer";
 
+import "../../components/baseComponents/Modal";
+
 @customElement("win-modal")
 export class WinModal extends LitElement implements Layer {
+  @query("o-modal") private modalEl!: HTMLElement & {
+    open: () => void;
+    close: () => void;
+  };
+
   public game: GameView;
   public eventBus: EventBus;
 
@@ -48,54 +55,29 @@ export class WinModal extends LitElement implements Layer {
   }
 
   render() {
+    if (!this.isVisible) return html``;
     return html`
-      <div
-        class="${this.isVisible
-          ? "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-800/70 p-6 rounded-lg z-[9999] shadow-2xl backdrop-blur-sm text-white w-[350px] max-w-[90%] md:w-[700px] md:max-w-[700px] animate-fadeIn"
-          : "hidden"}"
-      >
-        <h2 class="m-0 mb-4 text-[26px] text-center text-white">
-          ${this._title || ""}
-        </h2>
-        ${this.innerHtml()}
-        <div
-          class="${this.showButtons
-            ? "flex justify-between gap-2.5"
-            : "hidden"}"
-        >
-          <button
-            @click=${this._handleExit}
-            class="flex-1 px-3 py-3 text-base cursor-pointer bg-blue-500/60 text-white border-0 rounded transition-all duration-200 hover:bg-blue-500/80 hover:-translate-y-px active:translate-y-px"
-          >
-            ${translateText("win_modal.exit")}
-          </button>
-          <button
-            @click=${this.hide}
-            class="flex-1 px-3 py-3 text-base cursor-pointer bg-blue-500/60 text-white border-0 rounded transition-all duration-200 hover:bg-blue-500/80 hover:-translate-y-px active:translate-y-px"
-          >
-            ${this.isWin
-              ? translateText("win_modal.keep")
-              : translateText("win_modal.spectate")}
-          </button>
+      <o-modal title="${this._title || ""}">
+        <div class="v-stack" style="gap: 12px;">
+          ${this.innerHtml()}
+          <div class="${this.showButtons ? "h-stack between" : "hidden"}">
+            <button
+              class="c-button c-button--secondary c-button--block"
+              @click=${this._handleExit}
+            >
+              ${translateText("win_modal.exit")}
+            </button>
+            <button
+              class="c-button c-button--secondary c-button--block"
+              @click=${this.hide}
+            >
+              ${this.isWin
+                ? translateText("win_modal.keep")
+                : translateText("win_modal.spectate")}
+            </button>
+          </div>
         </div>
-      </div>
-
-      <style>
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translate(-50%, -48%);
-          }
-          to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-      </style>
+      </o-modal>
     `;
   }
 
@@ -199,6 +181,7 @@ export class WinModal extends LitElement implements Layer {
     await this.loadPatternContent();
     this.isVisible = true;
     this.requestUpdate();
+    this.modalEl?.open();
     setTimeout(() => {
       this.showButtons = true;
       this.requestUpdate();
@@ -208,6 +191,7 @@ export class WinModal extends LitElement implements Layer {
   hide() {
     this.isVisible = false;
     this.showButtons = false;
+    this.modalEl?.close();
     this.requestUpdate();
   }
 
